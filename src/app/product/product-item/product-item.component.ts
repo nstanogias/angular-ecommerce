@@ -8,6 +8,7 @@ import {Product} from '../../model/product';
 })
 export class ProductItemComponent implements OnInit {
   public product: Product;
+  private quantities: Array<number>;
 
   constructor() { }
 
@@ -19,6 +20,10 @@ export class ProductItemComponent implements OnInit {
       isOnSale: true,
       quantityInChart: 0
     };
+    this.quantities = [];
+    for (let i=0; i<20; i++) {
+      this.quantities.push(i);
+    }
   }
 
   increment() {
@@ -29,5 +34,9 @@ export class ProductItemComponent implements OnInit {
     if (this.product.quantityInChart > 0) {
       this.product.quantityInChart--;
     }
+  }
+
+  quantityChanged(qty) {
+    console.log('Quantity is ', qty);
   }
 }
