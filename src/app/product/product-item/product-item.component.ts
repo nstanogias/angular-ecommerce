@@ -1,42 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from '../../model/product';
+import {ProductQuantityChange} from '../../model/product-quantity-change';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.css']
+  styleUrls: ['./product-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductItemComponent implements OnInit {
-  public product: Product;
-  private quantities: Array<number>;
+export class ProductItemComponent {
+  @Input() public product: Product;
+  @Output() private quantityChange: EventEmitter<ProductQuantityChange> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
-    this.product = {
-      name: 'Test',
-      imageUrl: 'http://via.placeholder.com/150x150',
-      price: 50,
-      isOnSale: true,
-      quantityInChart: 0
-    };
-    this.quantities = [];
-    for (let i=0; i<20; i++) {
-      this.quantities.push(i);
-    }
-  }
-
   increment() {
-    this.product.quantityInChart++;
+    this.quantityChange.emit({product: this.product, changeInQuantity: 1});
   }
 
   decrement() {
-    if (this.product.quantityInChart > 0) {
-      this.product.quantityInChart--;
+    if (this.product.quantityInCart > 0) {
+      this.quantityChange.emit({product: this.product, changeInQuantity: -1});
     }
-  }
-
-  quantityChanged(qty) {
-    console.log('Quantity is ', qty);
   }
 }
