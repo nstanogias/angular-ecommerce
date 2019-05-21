@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
