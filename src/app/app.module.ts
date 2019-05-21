@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { CreateProductComponent } from './product/create-product/create-product.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductItemComponent,
-    ProductListComponent
+    ProductListComponent,
+    CreateProductComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
