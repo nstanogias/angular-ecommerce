@@ -1,6 +1,6 @@
 <h1>
   E-commerce portal
 </h1>
-<app-product-list></app-product-list>
+<app-product-list #productList></app-product-list>
 <hr>
-<app-create-product></app-create-product>
+<app-create-product (productCreated)="productList.onCreate()"></app-create-product>

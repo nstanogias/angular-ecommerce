@@ -1,3 +1,10 @@
+<div>
+  <input type="text"
+         placeholder="Search products"
+         name="searchBox"
+         [(ngModel)]="searchTerm"
+         (keyup)="search()"/>
+</div>
 <app-product-item
   [product]="product"
   (quantityChange)="onQuantityChange($event)"

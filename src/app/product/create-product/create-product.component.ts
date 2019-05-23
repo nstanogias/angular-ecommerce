@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Product} from '../../model/product';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'app-create-product',
@@ -9,9 +10,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CreateProductComponent {
 
+  @Output() private productCreated: EventEmitter<void> = new EventEmitter();
+
   public message = '';
   public productForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private productService: ProductService) {
     this.createForm();
   }
 
@@ -29,7 +32,13 @@ export class CreateProductComponent {
       this.message = 'Please correct errors and resubmit the form';
     } else {
       const product: Product = this.productForm.value;
-      console.log('Created product ', product);
+      this.productService.createProduct(product).subscribe((res) => {
+        this.message = 'Product successfully created.';
+        console.log('Triggered event emitter');
+        this.productCreated.next();
+      }, (err) => {
+        this.message = 'Unable to create product, please try again.';
+      });
     }
   }
 }
