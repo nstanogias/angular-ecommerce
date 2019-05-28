@@ -1,4 +1,4 @@
-<div class="product-item" [class.sale]="product.isOnSale">
+<div class="product-item" [class.sale]="product.isOnSale" routerLink="/product/{{product.id}}">
   <div class="image"><img [src]="product.imageUrl"></div>
   <div class="details">
     <div>{{product.name}}</div>

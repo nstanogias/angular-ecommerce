@@ -5,4 +5,5 @@ export interface Product {
   price: number;
   isOnSale: boolean;
   quantityInCart: number;
+  description: string;
 }

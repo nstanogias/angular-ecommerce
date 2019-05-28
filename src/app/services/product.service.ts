@@ -14,6 +14,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>('/api/product', {params: {q: query}});
   }
 
+  getProduct(id: string): Observable<Product> {
+    return this.httpClient.get<Product>('/api/product' + id);
+  }
+
   changeQuantity(id: number, changeInQuantity: number): Observable<any> {
     return this.httpClient.patch('/api/product/' + id, {changeInQuantity: changeInQuantity});
   }

@@ -1,6 +1,7 @@
-<h1>
-  E-commerce portal
-</h1>
-<app-product-list #productList></app-product-list>
-<hr>
-<app-create-product (productCreated)="productList.onCreate()"></app-create-product>
+<div class="links">
+  <span><a routerLink="/login" routerLinkActive="active">Login</a></span>
+  <span><a routerLink="/register" routerLinkActive="active">Register</a></span>
+  <span><a routerLink="/products/list" routerLinkActive="active">Products List</a></span>
+  <span><a routerLink="/products/create" routerLinkActive="active">Create Product</a></span>
+</div>
+<router-outlet></router-outlet>
